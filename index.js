@@ -26,15 +26,6 @@ const { getSession } = require("./lib/funct2")
 const { smsg, sleep, numToJid } = require('./lib')
 var prefixRegex = config.HANDLERS === "false" || config.HANDLERS === "null" ? "^" : new RegExp('^[' + config.HANDLERS + ']');
 
-async function startBot() {
-try {
-	await getSession(config.SESSION_ID);
-} catch (error) {
-	console.log("Encountered Error", error)
-}
-}
-startBot();
-
 setTimeout(() => {
     const store = makeInMemoryStore({
         logger: pino().child({ level: "silent", stream: "store" }),
@@ -655,7 +646,15 @@ console.log(err)
         return conn
     }
 
+async function startBot() {
+try {
+    await getSession(config.SESSION_ID);
     connectWA().catch(err => console.log(err))
+} catch (error) {
+    console.log("Encountered Error", error)
+}
+}
+startBot();
 
     let file = require.resolve(__filename)
     fs.watchFile(file, () => {
