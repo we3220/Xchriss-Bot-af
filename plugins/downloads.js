@@ -25,7 +25,7 @@ Index({
         const videoUrl = meta.media.find(v => v.type === "video").org;
         let mssg =  `
     *[ TIKTOK DOWNLOADER ]*
-    *ᴜsᴇʀ: *${author.nickname}`
+    *ᴜsᴇʀ: *${author.nickname}
     *ʟɪᴋᴇs:* ${like}
     *sʜᴀʀᴇs:* ${share}
 
@@ -72,7 +72,7 @@ Index({
     > ${BOT_NAME}
     `
 
-    await conn.sendMessage(message.jid, { image: { url: data.result.image || '' }, caption: mssg, contextInfo: { mentionedJid: [message.sender]}, { quoted: message.card });
+    await conn.sendMessage(message.jid, { image: { url: data.result.image || '' }, caption: mssg, contextInfo: { mentionedJid: [message.sender]}}, { quoted: message.card });
     await conn.sendMessage(message.jid, { audio: { url: data.result.downloadUrl }, mimetype: "audio/mpeg" }, { quoted: message.card });
 } catch (e) {
     console.log(e);
