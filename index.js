@@ -18,7 +18,7 @@ const { default: Taira,
         generateWAMessageFromContent,
         makeInMemoryStore, 
         jidDecode
-} = require("@whiskeysockets/baileys")
+} = require("baileys")
 const util = require("util");
 const axios = require("axios");
 const moment = require("moment-timezone");
