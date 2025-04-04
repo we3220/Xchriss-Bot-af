@@ -1,0 +1,88 @@
+{
+  "name": "Xchriss-Bot",
+  "description": "Simple WhatsApp MD bot Created by Tᴀɪʀᴀ Mᴀᴋɪɴᴏ.",
+  "repository": "https://github.com/anonphoenix007/Xchriss-Bot",
+  "logo": "https://raw.githubusercontent.com/anonphoenix007/storage/main/logo.jpg",
+  "keywords": ["nodejs", "bot", "whatsapp bot", "MAKINO", "Xchriss Bot", "Xchriss","Taira Makino","multi device"],
+  "succes_url": "/",
+  "stack": "container",
+  "env": {
+  "ANTICALL_END": {
+    "description": "End call.", 
+      "value": "false"
+  },
+   "ANTICALL_BLOCK": {
+    "description": "Block call senders.", 
+      "value": "false"
+  },
+   "ANTIDELETE": {
+    "description": "Antidelete", 
+      "value": "true"
+  },
+   "ANTILINK": {
+    "description": "Anti link", 
+      "value": "false"
+  },
+   "ERROR_MSG": {
+    "description": "error messages in log", 
+      "value": "true"
+  },
+   "GREETINGS": {
+    "description": "Welcome and goodbye messages.", 
+      "value": "true"
+  },
+   "HANDLERS": {
+    "description": "Bot prefix.", 
+      "value": "."
+  },
+   "LOG_MSG": {
+    "description": "show received messages in console.", 
+      "value": "true"
+  },
+   "MODE": {
+    "description": "Bot Mode, private or public", 
+      "value": "public",
+      "required" :true
+  },
+   "OWNER_NAME": {
+    "description": "Owner Name.", 
+      "value": "𝚃𝙰𝙸𝚁𝙰 𝙼𝙰𝙺𝙸𝙽𝙾"
+  },
+   "OWNER_NUMBER": {
+    "description": "Owner Number that receive bot start message.", 
+      "value": "2349072958046"
+  },
+   "PDM": {
+    "description": "promote and demote messages.", 
+      "value": "true"
+  },
+   "PRESENCE": {
+    "description": "Always online, 1 - composing, 2 - recording, 3 - available, 4 - unavailable", 
+      "value": "1"
+  },
+   "READ_MSG": {
+    "description": "Auto read messages.", 
+      "value": "false"
+  },
+   "READ_STATUS": {
+    "description": "Auto view status..", 
+      "value": "false"
+  },
+  "SESSION_ID": {
+    "description": "Put session ID here",
+    "required" :true
+  },
+  "SUDO": {
+    "description": "Bot owners, multiple numbers separated by comma.", 
+      "value": "2349072958046"
+  },
+},
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest"
+    },
+    {
+      "url": "https://github.com/carlosdommor/heroku-buildpack-ffmpeg-latest"
+    }
+  ]
+}

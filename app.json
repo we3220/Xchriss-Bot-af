@@ -1,88 +1,115 @@
 {
-  "name": "Xchriss-Bot",
-  "description": "Simple WhatsApp MD bot Created by Tᴀɪʀᴀ Mᴀᴋɪɴᴏ.",
-  "repository": "https://github.com/anonphoenix007/Xchriss-Bot",
-  "logo": "https://raw.githubusercontent.com/anonphoenix007/storage/main/logo.jpg",
-  "keywords": ["nodejs", "bot", "whatsapp bot", "MAKINO", "Xchriss Bot", "Xchriss","Taira Makino","multi device"],
-  "succes_url": "/",
-  "stack": "container",
+  "name": "PRINCE MDXI",
+  "description": "ᴊᴀᴠᴀsᴄʀɪᴘᴛ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴘʀɪɴᴄᴇ ᴍᴅx  ",
+  "logo": "https://raw.githubusercontent.com/Mayelprince/url/main/url/1264.jpg",
+  "keywords": ["bot"],
+  "success_url": "/",
+
+    "stack": "container",
   "env": {
-  "ANTICALL_END": {
-    "description": "End call.", 
-      "value": "false"
-  },
-   "ANTICALL_BLOCK": {
-    "description": "Block call senders.", 
-      "value": "false"
-  },
-   "ANTIDELETE": {
-    "description": "Antidelete", 
-      "value": "true"
-  },
-   "ANTILINK": {
-    "description": "Anti link", 
-      "value": "false"
-  },
-   "ERROR_MSG": {
-    "description": "error messages in log", 
-      "value": "true"
-  },
-   "GREETINGS": {
-    "description": "Welcome and goodbye messages.", 
-      "value": "true"
-  },
-   "HANDLERS": {
-    "description": "Bot prefix.", 
-      "value": "."
-  },
-   "LOG_MSG": {
-    "description": "show received messages in console.", 
-      "value": "true"
-  },
-   "MODE": {
-    "description": "Bot Mode, private or public", 
-      "value": "public",
-      "required" :true
-  },
-   "OWNER_NAME": {
-    "description": "Owner Name.", 
-      "value": "𝚃𝙰𝙸𝚁𝙰 𝙼𝙰𝙺𝙸𝙽𝙾"
-  },
-   "OWNER_NUMBER": {
-    "description": "Owner Number that receive bot start message.", 
-      "value": "2349072958046"
-  },
-   "PDM": {
-    "description": "promote and demote messages.", 
-      "value": "true"
-  },
-   "PRESENCE": {
-    "description": "Always online, 1 - composing, 2 - recording, 3 - available, 4 - unavailable", 
-      "value": "1"
-  },
-   "READ_MSG": {
-    "description": "Auto read messages.", 
-      "value": "false"
-  },
-   "READ_STATUS": {
-    "description": "Auto view status..", 
-      "value": "false"
-  },
-  "SESSION_ID": {
-    "description": "Put session ID here",
-    "required" :true
-  },
-  "SUDO": {
-    "description": "Bot owners, multiple numbers separated by comma.", 
-      "value": "2349072958046"
-  },
-},
-  "buildpacks": [
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest"
+    "SESSION_ID": {
+      "description": "Put the session-id here.",
+      "required": true,
+      "value": ""
+    },  
+    
+    "ALIVE_IMG": {
+      "description": "paste your image url if you don't have you can use this public url.",
+      "required": true,
+      "value": "https://raw.githubusercontent.com/Mayelprince/url/main/url/1264.jpg"
+    }, 
+    
+    "ALIVE_MSG": {
+      "description": "paste your alive message hear.",
+      "required": true,
+      "value": "HI DEAR IM ONLINE.!!♻️"
     },
-    {
-      "url": "https://github.com/carlosdommor/heroku-buildpack-ffmpeg-latest"
+    
+    "PREFIX": {
+      "description": "paste your bot prefix note! Don't apply null prefix.",
+      "required": true,
+      "value": "."
+    },
+    
+    "MODE": {
+      "description": "select your bot work type public-private-inbox-group.",
+      "required": true,
+      "value": "public"
+    }, 
+
+    "AUTO_VOICE": {
+      "description": "Make it true if you want bot auto voice.",
+      "required": true,
+      "value": "true"
+    }, 
+
+    "AUTO_REPLY": {
+      "description": "Make it true if you want bot auto reply.",
+      "required": true,
+      "value": "true"
+    }, 
+
+    "AUTO_STICKER": {
+      "description": "Make it true if you want bot auto sticker.",
+      "required": true,
+      "value": "false"
+    }, 
+
+    "AUTO_READ_STATUS": {
+      "description": "Make it true if you want bot auto auto_read_status.",
+      "required": true,
+      "value": "true"
+    }, 
+
+    "ANTI_LINK": {
+      "description": "Make it true if you want bot auto remove group link.",
+      "required": true,
+      "value": "true"
+    },
+
+    "ANTI_BAD": {
+      "description": "Make it true if you want bot auto delete bad words from group example xxx porn etc.",
+      "required": true,
+      "value": "false"
+    }, 
+
+    "FAKE_RECORDING": {
+      "description": "Make it true if you want bot fake record.",
+      "required": true,
+      "value": "true"
+    },
+
+    "AUTO_REACT": {
+      "description": "Make it true if you want bot AutoReact.",
+      "required": false,
+      "value": "false"
+    },
+
+    "OWNER_REACT": {
+      "description": "Make it true if you want bot OwnerReact.",
+      "required": false,
+      "value": "false"
+    
+    }, 
+
+    "BOT_NAME": {
+      "description": "write hear your name.",
+      "required": true,
+      "value": "𝗣𝗥𝗜𝗡𝗖𝗘 𝗠𝗗𝗫"
+    }, 
+
+    "HEART_REACT": {
+      "description": "Make it true if you want bot only heart ♥️ emjois reaction .",
+      "required": true,
+      "value": "false"
     }
-  ]
+
+},
+
+     "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+        }
+     ],
+  "stack": "heroku-24"
 }
