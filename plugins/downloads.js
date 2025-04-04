@@ -6,12 +6,6 @@ const { githubstalk } = require("../lib/ghstalk")
 const Index = cmd
 const { BOT_NAME } = require("../config")
 
-
-
-const {getContextInfo} = require('./new')
-const { cmd } = require('../command');
-const axios = require('axios');
-
 Index({
      pattern: "tiktok",
      alias: ["tt", "ttdl"],
