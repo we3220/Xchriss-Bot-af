@@ -3,8 +3,6 @@
   "description": "Simple WhatsApp MD bot Created by Tᴀɪʀᴀ Mᴀᴋɪɴᴏ.",
   "logo": "https://raw.githubusercontent.com/anonphoenix007/storage/main/logo.jpg",
   "keywords": ["nodejs", "bot", "whatsapp bot", "MAKINO", "Xchriss Bot", "Xchriss","Taira Makino","multi device"],
-  "success_url": "/",
-  "stack": "container",
   "env": {
   "ANTICALL_END": {
     "description": "End call.", 
@@ -76,12 +74,6 @@
       "value": "2349072958046"
   },
 },
-"formation": {
-                "worker": {
-                        "quantity": 1,
-                        "size": "basic"
-                 }
-        }
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest"
