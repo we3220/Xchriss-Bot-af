@@ -1,8 +1,11 @@
 {
   "name": "Xchriss-Bot",
   "description": "Simple WhatsApp MD bot Created by Tᴀɪʀᴀ Mᴀᴋɪɴᴏ.",
+  "repository": "https://github.com/anonphoenix007/Xchriss-Bot",
   "logo": "https://raw.githubusercontent.com/anonphoenix007/storage/main/logo.jpg",
   "keywords": ["nodejs", "bot", "whatsapp bot", "MAKINO", "Xchriss Bot", "Xchriss","Taira Makino","multi device"],
+  "succes_url": "/",
+  "stack": "container",
   "env": {
   "ANTICALL_END": {
     "description": "End call.", 
