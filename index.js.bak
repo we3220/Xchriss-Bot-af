@@ -71,16 +71,7 @@ setInterval(() => {
                 if (!m.message) return
                 if(m.isBaileys) return
                 if (m.jid.endsWith("broadcast")) return;
-                var stat = config.PRESENCE;
-            if(stat == 1) {
-              await conn.sendPresenceUpdate("composing", msg.key.remoteJid);
-            } else if(stat == 2) {
-              await conn.sendPresenceUpdate("recording", msg.key.remoteJid);
-            } else if(stat == 3) {
-              await conn.sendPresenceUpdate("available", msg.key.remoteJid);
-            } else {
-                await conn.sendPresenceUpdate("unavailable", msg.key.remoteJid);
-            }
+                if (config.alwaysonline==='true') { conn.sendPresenceUpdate('available', m.jid) }
                 var { body } = m
                 var budy = typeof m.text == "string" ? m.text : false;
                 let icmd = body ? prefixRegex.test(body[0]) : false;
@@ -123,6 +114,20 @@ setInterval(() => {
                         command.function(conn, m, args,{isCreator, body, budy});
                     }
                 });
+                /*const groupMetadata = m.isGroup ? await conn.groupMetadata(m.jid)
+                    .catch((e) => {}) : "";
+                const participants = m.isGroup && groupMetadata.participants !=undefined ? await groupMetadata.participants : "";
+                const groupAdminss = (participants) => {
+                    a = [];
+                    for (let i of participants) {
+                        if (i.admin == null) continue;
+                        a.push(i.id);
+                    }
+                    return a;
+                }
+                const groupAdmins = m.isGroup ? await groupAdminss(participants) : ''
+                const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false;
+                const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false;*/
                 if (config.LOG_MSG) {
                     console.log(`
                      [ MESSAGE ]
@@ -135,7 +140,7 @@ setInterval(() => {
                 if (isCreator && m.text.startsWith('>')) {
                     let code = budy.slice(2)
                     if (!code) {
-                        m.reply(`Provide some codes to execute!`);
+                        m.reply(`Provide some codes!`);
                         return;
                     }
                     try {
@@ -151,7 +156,7 @@ setInterval(() => {
                 if (isCreator && m.text.startsWith('<')) {
                     let code = budy.slice(2)
                     if (!code) {
-                        m.reply(`Provide some codes to execute!`);
+                        m.reply(`Provide some codes!`);
                         return;
                     }
                     try {
@@ -175,15 +180,6 @@ setInterval(() => {
                       if (stdout) return m.reply(`${stdout}`)
                     })
                   } catch (error) {
-                    m.reply(util.format(err));
-                  }
-                if (isCreator && m.text.startsWith('$')) {
-                    try {
-                    exec(budy.slice(2), (err, stdout) => {
-                        if (err) return m.reply(`${err}`)
-                        if (stdout) return m.reply(`${stdout}`)
-                    })
-                } catch (error) {
                     m.reply(util.format(err));
                   }
                 }
@@ -521,7 +517,7 @@ console.log(err)
 					});
                     const bot_user = await conn.decodeJid(conn.user.id)
                     let owner = [bot_user.split("@")[0]]
-                    const sudo = numToJid(config.SUDO.split(',')[0]) || conn.user.id;
+                    const sudo = numToJid(config.SUDO.split(',')[0]) || client.user.id;
                     await sleep(10000)
 			        await conn.sendMessage(sudo, { text: '*✞Xᴄʜʀɪss Bot✞*\n\n```PREFIX : ' + prefix + '\nPLUGINS : ' + events.commands.filter(command => command.pattern).length + '\nVERSION : ' + require('./package.json').version + '```'});
                 }
