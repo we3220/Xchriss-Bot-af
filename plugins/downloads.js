@@ -29,7 +29,8 @@ Index({
     *ʟɪᴋᴇs:* ${like}
     *sʜᴀʀᴇs:* ${share}
 
-    >  ${BOT_NAME}
+
+    ${BOT_NAME}
     `
         await conn.sendMessage(message.jid, {
             video: { url: videoUrl },
@@ -70,7 +71,8 @@ Index({
     *ᴀᴜᴛʜᴏʀ:* ${yts.author.name}
     *sᴏᴜʀᴄᴇ:* ${yts.url}
 
-    > ${BOT_NAME}
+
+    ${BOT_NAME}
     `
 
     await conn.sendMessage(message.jid, { image: { url: data.result.image || '' }, caption: mssg, contextInfo: { mentionedJid: [message.sender]}}, { quoted: message.card });
