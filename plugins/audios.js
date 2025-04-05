@@ -27,7 +27,7 @@ const replyAudio = async (conn, message, audio) => {
              renderLargerThumbnail: true
              }
          }
-        }, { quoted: card });
+        }, { quoted: message.card });
 }
 
 
@@ -47,7 +47,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -72,7 +72,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -96,7 +96,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -121,7 +121,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -145,7 +145,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -169,7 +169,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -193,7 +193,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -217,7 +217,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -241,7 +241,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -265,7 +265,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -289,7 +289,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
@@ -313,7 +313,7 @@ try {
                 fs.unlinkSync(media)
                 if (err) return message.reply(err.toString())
                 let buff = fs.readFileSync(ran)
-                replyImage(conn, message, buff)
+                replyAudio(conn, message, buff)
                 fs.unlinkSync(ran)
                 })
 } catch (error) {
