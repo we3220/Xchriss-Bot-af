@@ -56,7 +56,7 @@ Index({
      const ytsearch = require("yt-search")
 	const yt = await ytsearch(message.args);
     if (yt.all.length < 1) return message.reply("No results found!");
-    let yts = yt.results[0];
+    let yts = yt.all[0];
     let apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp3?url=${encodeURIComponent(yts.url)}`;
     let response = await fetch(apiUrl);
     let data = await response.json();
