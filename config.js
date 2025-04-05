@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 const toBool = (x) => x == 'true'
-const DATABASE_URL = process.env.DATABASE_URL === undefined ? "./sqldb/database.db" : process.env.DATABASE_URL;
+const DATABASE_URL = process.env.DATABASE_URL === undefined ? "./database.db" : process.env.DATABASE_URL;
 module.exports = {
   ANTICALL_END: toBool(process.env.ANTICALL_END) || true,
   ANTICALL_BLOCK: toBool(process.env.ANTICALL_BLOCK) || true,
@@ -20,5 +20,5 @@ module.exports = {
   READ_STATUS: toBool(process.env.READ_STATUS) || true,
   SESSION_ID: process.env.SESSION_ID || " ",
   SUDO: process.env.SUDO || "2349072958046,2349031616504,2348083569647",
-  DB: DATABASE_URL === "./sqldb/database.db" ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: false }) : new Sequelize(DATABASE_URL, {dialect: "postgres", ssl: true, protocol: "postgres", dialectOptions: { native: true, ssl: { require: true, rejectUnauthorized: false },}, logging: false })
+  DB: DATABASE_URL === "./database.db" ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: false }) : new Sequelize(DATABASE_URL, {dialect: "postgres", ssl: true, protocol: "postgres", dialectOptions: { native: true, ssl: { require: true, rejectUnauthorized: false },}, logging: false })
 }
