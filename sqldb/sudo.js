@@ -1,16 +1,16 @@
 const config = require('../config');
 const { DataTypes } = require('sequelize');
 
-const SudoDB = config.DB.define('sudo', {
-    number: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
+const sudoDb = config.DB.define("sudo", {
+   number: {
+     type: DataTypes.STRING,
+     allowNull: false
+   }
 });
 
 async function init() {
     try {
-        await config.DB.sync({ alter: true });
+        await config.DB.sync();
     } catch (error) {
         console.error(error);
     }
@@ -18,16 +18,24 @@ async function init() {
 
 init();
 
-async function setSudo(number) {
-    return await SudoDB.create({ number });
+const setSudo = async (user) => {
+	await sudoDb.create({ number: user })
 }
 
-async function delSudo(number) {
-    return await SudoDB.destroy({ where: { number } });
+const getSudo = async () => {
+	try {
+		await sudoDb.findAll()
+	} catch (err) {
+		console.error(err)
+	}
 }
 
-async function getSudo() {
-    return await SudoDB.findAll();
+const delSudo = async (user) => {
+    try {
+        await sudoDb.destroy({ where: { user } })
+    } catch (err) {
+        console.error(err)
+    }
 }
 
-module.exports = { SudoDB, setSudo, delSudo, getSudo };
+module.exports = { sudoDb, setSudo, delSudo, getSudo }
