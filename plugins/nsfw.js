@@ -144,13 +144,13 @@ const data = await nsfw.fetch("bottomless")
 });
 
 Index({
-	pattern: 'blowjob',
+	pattern: 'tattoo',
     react: "🥵",
 	desc: 'nsfw',
 	category: 'nsfw'
 },async (conn, message, args) => {
 try {
-const data = await nsfw.fetch("blowjob")
+const data = await nsfw.fetch("tattoo")
         conn.sendMessage(message.jid, { image: { url: data.image.url }, caption: "🥹🥵",  }, { quoted: message.card })
 } catch (error) {
     message.reply(error.toString())
@@ -186,13 +186,13 @@ const data = await nsfw.fetch("cumsluts")
 });
 
 Index({
-	pattern: 'sixnine',
+	pattern: 'lick',
     react: "🥵",
 	desc: 'nsfw',
 	category: 'nsfw'
 },async (conn, message, args) => {
 try {
-const data = await nsfw.fetch("sixnine")
+const data = await nsfw.fetch("lick")
         conn.sendMessage(message.jid, { image: { url: data.image.url }, caption: "🥹🥵",  }, { quoted: message.card })
 } catch (error) {
     message.reply(error.toString())
@@ -298,16 +298,16 @@ const data = await nsfw.fetch("kiss")
 });
 
 Index({
-	pattern: 'lesbian',
+	pattern: 'tiny',
     react: "🥵",
 	desc: 'nsfw',
 	category: 'nsfw'
 },async (conn, message, args) => {
-//try {
-const data = await nsfw.fetch("lesbian")
+try {
+const data = await nsfw.fetch("tiny")
 console.log(data)
         conn.sendMessage(message.jid, { image: { url: data.image.url }, caption: "🥹🥵",  }, { quoted: message.card })
-/*} catch (error) {
+} catch (error) {
     message.reply(error.toString())
-}*/
+}
 }); 
