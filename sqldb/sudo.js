@@ -19,7 +19,7 @@ async function init() {
 init();
 
 async function setSudo(number) {
-    return await SudoDB.create({ number });
+    return await SudoDB.create({ where: { number } });
 }
 
 async function delSudo(number) {
