@@ -28,22 +28,24 @@ async function getSudo(userId) {
 async function addSudo(userId) {
  let existingSudo = await getSudo(userId);
 
- if (!existingSudo) {
-  existingSudo = await SudoDB.create({
+// if (!existingSudo) {
+//  existingSudo = 
+await SudoDB.create({
    userId,
    createdAt: new Date(),
    updatedAt: new Date(),
   });
- } else {
-  existingSudo.updatedAt = new Date();
+// } else {
+  /*existingSudo.updatedAt = new Date();
   await existingSudo.save();
  }
 
- return existingSudo;
+ return existingSudo;*/
 }
 
 async function getAllSudos() {
- return await SudoDB.findAll();
+ //return 
+ await SudoDB.findAll();
 }
 
 async function deleteSudo(userId) {
@@ -61,5 +63,5 @@ module.exports = {
  getSudo,
  addSudo,
  getAllSudos,
- deleteSudo,
+ deleteSudo
 };
