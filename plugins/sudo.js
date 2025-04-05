@@ -17,7 +17,7 @@ try {
    let user = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!user) return message.reply("_*Reply/Tag or provide a number*_")
    user = user.split("@")[0]
-   let sudos = getSudo()
+   let sudos = await getSudo()
    if (sudos.includes(user)) return message.reply("*_User is already In the SUDO db.*_")
    setSudo(user)
    await message.reply(`${user} Has Been given Sudo Access`)
