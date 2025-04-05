@@ -25,11 +25,11 @@ Index({
         const videoUrl = meta.media.find(v => v.type === "video").org;
         let mssg =  `
     *[ TIKTOK DOWNLOADER ]*
-    *ᴜsᴇʀ: *${author.nickname}
+    *ᴜsᴇʀ:* ${author.nickname}
     *ʟɪᴋᴇs:* ${like}
     *sʜᴀʀᴇs:* ${share}
 
-    > ${BOT_NAME}
+    >  ${BOT_NAME}
     `
         await conn.sendMessage(message.jid, {
             video: { url: videoUrl },
