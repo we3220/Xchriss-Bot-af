@@ -56,7 +56,7 @@ Index({
 }, async (conn, message, args) => {
 try {
    if (!message.isCreator) return message.reply("_Command is for bot owner only")
-   let sudos = await getSudo()[0]
+   let sudos = await getSudo()
    console.log(Object.keys(sudos))
    await message.reply(`Sudo numbers are \n${sudos}`)
 } catch (err) {                                           
