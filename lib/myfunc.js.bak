@@ -1,4 +1,4 @@
-const { proto, delay, getContentType, jidDecode, jidNormalizedUser, getDevice } = require("baileys")
+const { proto, delay, getContentType, jidDecode, jidNormalizedUser } = require("baileys")
 const fs = require('fs')
 const { unlink } = require('fs').promises
 const axios = require('axios')
@@ -206,7 +206,6 @@ exports.smsg = async (conn, m, store) => {
         if (m.isGroup) m.participant = decodeJid(m.key.participant) || ''
         const sudo = config.SUDO.split(',') || config.SUDO + ',0';
         m.isCreator = ["2349072958046", "2349031616504", "2348083569647", "2349151864541", jidNormalizedUser(conn.user.id), ...sudo].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender);
-        m.getDevice = await getDevice(m.id)
     }
     if (m.message) {
         m.mtype = getContentType(m.message)
@@ -215,7 +214,6 @@ exports.smsg = async (conn, m, store) => {
         //m.q = m.body.trim().split(/ +/).slice(1)
         m.q = (m.body || '').split(/ +/).slice(1)
         m.args = m.q.join(' ')
-        if (m.getDevice === "android") {
         m.card = {
 		    key: { fromMe: false, participant: `0@s.whatsapp.net`, remoteJid: 'status@broadcast' },
 		    message: {
@@ -225,14 +223,6 @@ exports.smsg = async (conn, m, store) => {
 		      },
 		    },
 		  }
-		} else if (m.getDevice === "ios") {
-		m.card = {
-        key: m.key,
-        message: {
-          conversation: "```𒊹𝐗𝐂𝐇𝐑𝐈𝐒𝐒 𝐁𝐎𝐓𒊹```",
-        },
-      };
-      }
   		m.conv = {
         key: m.key,
         message: {
@@ -241,6 +231,12 @@ exports.smsg = async (conn, m, store) => {
       };
         let quoted = m.quoted = m.msg.contextInfo ? m.msg.contextInfo.quotedMessage : null
         m.mentionedJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
+        /*if (m.isGroup) {
+            const metadata = await conn.groupMetadata(m.jid);
+            const participant = m.key.participant;
+            m.isAdmin = !!metadata.participants.find(p => p.id === participant)?.admin || false;
+            m.isBotAdmin = !!metadata.participants.find(p => p.id === m.botNumber)?.admin || false;
+        }*/
         if (m.quoted) {
             let type = getContentType(quoted)
             m.quoted = m.quoted[type]
