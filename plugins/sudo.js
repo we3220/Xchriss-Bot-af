@@ -1,12 +1,12 @@
 const { cmd, mode } = require("../lib")
 const fs = require("fs")
 const path = require("path")
-//let sudo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/sudo.json')))
-const { addSudo, getAllSudos, deleteSudo } = require("../sqldb/sudo")
+let sudo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/sudo.json')))
+//const { addSudo, getAllSudos, deleteSudo } = require("../sqldb/sudo")
 const Index = cmd
 
 
-Index({
+/*Index({
         pattern: 'setsudo',
         desc: 'Add sudo',
         category: 'owner',
@@ -17,8 +17,8 @@ try {
    let user = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!user) return message.reply("_*Reply/Tag or provide a number*_")
    user = user.split("@")[0]
-   /*let sudos = await getSudo()
-   if (sudos.includes(user)) return message.reply("*_User is already In the SUDO db.*_")*/
+   let sudos = await getSudo()
+   if (sudos.includes(user)) return message.reply("*_User is already In the SUDO db.*_")
    await addSudo(user)
    await message.reply(`${user} Has Been given Sudo Access`)
 } catch (err) {
@@ -65,21 +65,22 @@ try {
 	message.reply(err.toString())
   }
 });
+*/
 
-
-/*Index({
+Index({
 	pattern: 'setsudo',
 	desc: 'Add sudo',
 	category: 'owner',
 	filename: __filename
 }, async (conn, message, args) => {
-    let first = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
+   if (!message.isCreator) return message.reply("_Command is for bot owner only")
+   let first = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!first) return message.reply("_*Reply/Tag or provide a number*_")
    let user = first.split("@")[0]
    if (sudo.includes(user)) return message.reply("*_User is already In the Sudo list*_")
    sudo.push(user)
-   fs.writeFileSync('../lib/sudo.json', JSON.stringify(sudo))
-await message.reply(`${user} Has Been given Sudo Access`)
+   fs.writeFileSync(sudo, JSON.stringify(sudo))
+   await message.reply(`${user} Has Been given Sudo Access`)
 });
 
 
@@ -89,15 +90,28 @@ Index({
 	category: 'owner',
 	filename: __filename
 }, async (conn, message, args) => {
-    let first = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
+    if (!message.isCreator) return message.reply("_Command is for bot owner only")
+    let first = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!first) return message.reply("_*Reply/Tag or provide a number*_")
    let user = first.split("@")[0]
       if (sudo.includes(user)) return message.reply("*_User is not In the Sudo list*_")
    let fin = sudo.indexOf(user)
    sudo.splice(fin, 1)
-   fs.writeFileSync('../lib/sudo.json', JSON.stringify(sudo))
+   fs.writeFileSync(sudo, JSON.stringify(sudo))
 await message.reply(`${user} Has Been Deleted from Sudo users.`)
-});*/
+});
+
+Index({
+    pattern: 'delsudo',
+    desc: 'delete sudo',
+    category: 'owner',
+    filename: __filename
+}, async (conn, message, args) => {
+  if (!message.isCreator) return message.reply("_Command is for bot owner only")
+  let txt = `*------「 Bot Sudo 」------*\n\n`
+  txt += sudo
+  message.reply(txt)
+})
 
 
 Index({
