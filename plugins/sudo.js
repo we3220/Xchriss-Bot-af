@@ -2,7 +2,7 @@ const { cmd, mode } = require("../lib")
 const fs = require("fs")
 const path = require("path")
 //let sudo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/sudo.json')))
-const { setSudo, delSudo, getSudo } = require("../sqldb/sudo")
+const { addSudo, getAllSudos, deleteSudo, } = require("../sqldb/sudo")
 const Index = cmd
 
 
@@ -19,7 +19,7 @@ try {
    user = user.split("@")[0]
    /*let sudos = await getSudo()
    if (sudos.includes(user)) return message.reply("*_User is already In the SUDO db.*_")*/
-   setSudo(user)
+   addSudo(user)
    await message.reply(`${user} Has Been given Sudo Access`)
 } catch (err) {
 	message.reply(err.toString())
@@ -38,10 +38,12 @@ try {
    let user = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!user) return message.reply("_*Reply/Tag or provide a number*_")
    user = user.split("@")[0]
-   let sudos = await getSudo()
-   if (!sudos.includes(user)) return message.reply("*_User is not In the SUDO db.*_")
-   delSudo(user)
-   await message.reply(`${user} Has Been given Sudo Access`)
+   let isDel = await deleteSudo()
+   if (isDel) {
+	   return message.reply(`${user} Has been removed from SUDO db.`)
+   } else {
+   	       return message.reply(`${user} is not SUDO`)
+   }
 } catch (err) {
         message.reply(err.toString())
   }
@@ -56,8 +58,8 @@ Index({
 }, async (conn, message, args) => {
 try {
    if (!message.isCreator) return message.reply("_Command is for bot owner only")
-   let sudos = await getSudo()
-   console.log(sudos)
+   let sudos = await getAllSudos()
+   if (sudos.length === 0) return message.reply("No user found on the list")
    await message.reply(`Sudo numbers are \n${sudos}`)
 } catch (err) {                                           
 	message.reply(err.toString())

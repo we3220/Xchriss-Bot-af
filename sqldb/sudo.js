@@ -1,41 +1,65 @@
 const config = require('../config');
 const { DataTypes } = require('sequelize');
 
-const sudoDb = config.DB.define("sudo", {
-   number: {
-     type: DataTypes.STRING,
-     allowNull: false
-   }
+const SudoDB = config.DB.define('sudos', {
+ userId: {
+  type: DataTypes.STRING,
+  allowNull: false,
+  unique: true,
+ },
+ createdAt: {
+  type: DataTypes.DATE,
+  allowNull: false,
+ },
+ updatedAt: {
+  type: DataTypes.DATE,
+  allowNull: false,
+ },
 });
 
-async function init() {
-    try {
-        await config.DB.sync();
-    } catch (error) {
-        console.error(error);
-    }
+async function getSudo(userId) {
+ return await SudoDB.findOne({
+  where: {
+   userId,
+  },
+ });
 }
 
-init();
+async function addSudo(userId) {
+ let existingSudo = await getSudo(userId);
 
-const setSudo = async (user) => {
-	await sudoDb.create({ number: user })
+ if (!existingSudo) {
+  existingSudo = await SudoDB.create({
+   userId,
+   createdAt: new Date(),
+   updatedAt: new Date(),
+  });
+ } else {
+  existingSudo.updatedAt = new Date();
+  await existingSudo.save();
+ }
+
+ return existingSudo;
 }
 
-const getSudo = async () => {
-	try {
-		await sudoDb.findAll()
-	} catch (err) {
-		console.error(err)
-	}
+async function getAllSudos() {
+ return await SudoDB.findAll();
 }
 
-const delSudo = async (user) => {
-    try {
-        await sudoDb.destroy({ where: { user } })
-    } catch (err) {
-        console.error(err)
-    }
+async function deleteSudo(userId) {
+ const deleted = await SudoDB.destroy({
+  where: {
+   userId,
+  },
+ });
+
+ return deleted > 0;
 }
 
-module.exports = { sudoDb, setSudo, delSudo, getSudo }
+module.exports = {
+ SudoDB,
+ getSudo,
+ addSudo,
+ getAllSudos,
+ deleteSudo,
+};
