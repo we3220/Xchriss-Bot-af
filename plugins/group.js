@@ -412,7 +412,8 @@ try {
     const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
 	 if (!isBotAdmins) return await message.reply("I'm not an admin")
      if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
-	let all = message.participants.map(v => v.jid)
+	var { participants } = message.isGroup ? await conn.groupMetadata(message.jid) : null
+	let all = participants.map(a => a.id)
 	await message.reply("Kicking all members in current group....")
         for (let member of all) {
           conn.groupParticipantsUpdate(message.jid, [member], 'remove')
@@ -423,6 +424,110 @@ try {
 });      
     
     
+Index({
+   pattern: "rejectall",
+   alias: ["rejectjoin", "reject"],
+   info: "reject all request to join!",
+   category: "group",
+   filename: __filename
+ }, async (conn, message, args) => {
+   try {
+    if (!message.isGroup) return message.reply("This command is for groups only")
+    const groupAdmins = await getAdmin(conn, message)
+    const isBotAdmins = message.isGroup ? groupAdmins.includes(message.botNumber) : false;
+    const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
+	 if (!isBotAdmins) return await message.reply("I'm not an admin")
+     if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
+     const reqs = await conn.groupRequestParticipantsList(message.jid);
+     if (!reqs || !reqs[0]) {
+       return await message.reply("*_No Request Join Yet_*");
+     }
+     let reqs2 = [];
+     let mssg = "*List of rejected users*\n\n";
+     for (let i = 0; i < reqs.length; i++) {
+       try {
+         await conn.groupRequestParticipantsUpdate(message.jid, [reqs[i].jid], "reject");
+         mssg += "@" + reqs[i].jid.split("@")[0] + "\n";
+         reqs2 = [...reqs2, reqs[i].jid];
+       } catch {}
+     }
+     await conn.sendMessage(message.jid, {
+       text: mssg,
+       mentions: [reqs2]
+     });
+   } catch (err) {
+     await message.reply(err.toString());
+   }
+ });
+ Index({
+   pattern: "acceptall",
+   alias: ["acceptjoin", "accept"],
+   desc: "accept all request to join!",
+   category: "group",
+   filename: __filename
+ }, async (conn, message, args) => {
+   try {
+       if (!message.isGroup) return message.reply("This command is for groups only")
+    const groupAdmins = await getAdmin(conn, message)
+    const isBotAdmins = message.isGroup ? groupAdmins.includes(message.botNumber) : false;
+    const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
+	 if (!isBotAdmins) return await message.reply("I'm not an admin")
+     if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
+     const total = await conn.groupRequestParticipantsList(message.jid);
+     if (!total || !total[0]) {
+       return await message.reply("*_No Join Request Yet_*");
+     }
+     let reqs2 = [];
+     let mssg = "*List of accepted users*\n\n";
+     for (let i = 0; i < total.length; i++) {
+       try {
+         await conn.groupRequestParticipantsUpdate(message.jid, [total[i].jid], "approve");
+         mssg += "@" + total[i].jid.split("@")[0] + "\n";
+         reqs2 = [...reqs2, total[i].jid];
+       } catch {}
+     }
+    await conn.sendMessage(message.jid, {
+       text: mssg,
+       mentions: [reqs2]
+     });
+   } catch (err) {
+     await message.reply(err.toString());
+   }
+ });
+ Index({
+   pattern: "listrequest",
+   alias: ["requestjoin", "requests"],
+   desc: "Set Description of Group",
+   category: "group",
+   filename: __filename
+ }, async (conn, message, args) => {
+   try {
+    if (!message.isGroup) return message.reply("This command is for groups only")
+    const groupAdmins = await getAdmin(conn, message)
+    const isBotAdmins = message.isGroup ? groupAdmins.includes(message.botNumber) : false;
+    const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
+	 if (!isBotAdmins) return await message.reply("I'm not an admin")
+     if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
+     const total = await conn.groupRequestParticipantsList(message.jid);
+     if (!total || !total[0]) {
+       return await message.reply("*_No Request Join Yet_*");
+     }
+     let reqs2 = [];
+     let mssg = "*List of User Request to join*\n\n";
+     for (let i = 0; i < total.length; i++) {
+       mssg += "@" + total[i].jid.split("@")[0] + "\n";
+       reqs2 = [...reqs2, total[i].jid];
+     }
+     await conn.sendMessage(message.jid, {
+       text: mssg,
+       mentions: [reqs2]
+     });
+   } catch (err) {
+     await message.reply(err.toString());
+   }
+ });
+ 
+ 
  Index({
 	pattern: 'revoke',
 	desc: 'revoke group link',
