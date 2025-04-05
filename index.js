@@ -168,15 +168,6 @@ setInterval(() => {
                     }
                     return
                 }
-                if (isCreator && m.text.startsWith('<')) {
-                  try {
-                    exec(budy.slice(2), (err, stdout) => {
-                      if (err) return m.reply(`${err}`)
-                      if (stdout) return m.reply(`${stdout}`)
-                    })
-                  } catch (error) {
-                    m.reply(util.format(err));
-                  }
                 if (isCreator && m.text.startsWith('$')) {
                     try {
                     exec(budy.slice(2), (err, stdout) => {
