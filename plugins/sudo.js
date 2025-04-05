@@ -38,7 +38,7 @@ try {
    let user = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!user) return message.reply("_*Reply/Tag or provide a number*_")
    user = user.split("@")[0]
-   let sudos = getSudo()
+   let sudos = await getSudo()
    if (!sudos.includes(user)) return message.reply("*_User is not In the SUDO db.*_")
    delSudo(user)
    await message.reply(`${user} Has Been given Sudo Access`)
@@ -56,7 +56,7 @@ Index({
 }, async (conn, message, args) => {
 try {
    if (!message.isCreator) return message.reply("_Command is for bot owner only")
-   let sudos = getsudo()
+   let sudos = await getSudo()
    await message.reply(`Sudo numbers are \n${user}`)
 } catch (err) {                                           
 	message.reply(err.toString())
