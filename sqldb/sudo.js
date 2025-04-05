@@ -26,7 +26,7 @@ async function getSudo(userId) {
 }
 
 async function addSudo(userId) {
- let existingSudo = await getSudo(userId);
+// let existingSudo = await getSudo(userId);
 
 // if (!existingSudo) {
 //  existingSudo = 
