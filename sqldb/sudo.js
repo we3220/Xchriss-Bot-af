@@ -5,7 +5,6 @@ const SudoDB = config.DB.define('sudo', {
     number: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
     }
 });
 
