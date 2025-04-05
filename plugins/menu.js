@@ -56,7 +56,9 @@ let card = message.card
     ◈ Dev     : *𝚃𝙰𝙸𝚁𝙰 𝙼𝙰𝙺𝙸𝙽𝙾*
   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-  ┏━『 COMMAND LIST 』━┓${readmore}`
+  ┏━『 COMMAND LIST 』━┓
+  ${readmore}
+  `
 
   for (const command in commandslist) {
     msg += `\n
