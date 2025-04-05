@@ -109,8 +109,8 @@ edit config.js to configure variables or do that when deploying on heroku
 <h2 align="center">  Reminder
 </h2>
    
-- This bot is not made by `WhatsApp Inc.` So misusing the bot might `ban` your `WhatsApp account!`(Though your WhatsApp account can be unbanned only once.)
-- I am not responsible for banning your account.
+- This bot is not made by `WhatsApp Inc.` So misusing the bot might `ban` your `WhatsApp account!`
+- I am not responsible if your account get  banned for spam.
 - Use at your own risk by keeping this warning in mind.
 
 <h1 align="center">
