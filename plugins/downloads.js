@@ -53,6 +53,7 @@ Index({
 }, async (conn, message, args) => {
      try {
      if (!message.args) return await message.reply("*𝐏lease providea YouTube url or Song Name.*");
+     const ytsearch = require("yt-search")
 	const yt = await ytsearch(q);
     if (yt.results.length < 1) return reply("No results found!");
     let yts = yt.results[0];
