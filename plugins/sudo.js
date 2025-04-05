@@ -1,7 +1,8 @@
 const { cmd, mode } = require("../lib")
 const fs = require("fs")
 const path = require("path")
-let sudo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/sudo.json'))).toString()
+let sudo = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../lib/sudo.json')))
+//const xchriss = fs.readFileSync(path.resolve(__dirname, './media/ban.json'));
 //const { addSudo, getAllSudos, deleteSudo } = require("../sqldb/sudo")
 const Index = cmd
 
