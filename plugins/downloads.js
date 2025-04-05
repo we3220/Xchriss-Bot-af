@@ -54,14 +54,14 @@ Index({
      try {
      if (!message.args) return await message.reply("*𝐏lease providea YouTube url or Song Name.*");
      const ytsearch = require("yt-search")
-	const yt = await ytsearch(q);
-    if (yt.results.length < 1) return reply("No results found!");
+	const yt = await ytsearch(message.args);
+    if (yt.results.length < 1) return message.reply("No results found!");
     let yts = yt.results[0];
     let apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp3?url=${encodeURIComponent(yts.url)}`;
     let response = await fetch(apiUrl);
     let data = await response.json();
     if (data.status !== 200 || !data.success || !data.result.downloadUrl) {
-        return reply("Failed to fetch the audio. Please try again later.");
+        return message.reply("Failed to fetch the audio. Please try again later.");
     }
 
 	let mssg =  `
