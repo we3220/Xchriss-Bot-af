@@ -2,8 +2,66 @@ const { cmd, mode } = require("../lib")
 const fs = require("fs")
 const path = require("path")
 //let sudo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/sudo.json')))
-const { setsudo, delsudo, getsudo } = require("../sqldb/sudo")
+const { setSudo, delSudo, getSudo } = require("../sqldb/sudo")
 const Index = cmd
+
+
+Index({
+        pattern: 'setsudo',
+        desc: 'Add sudo',
+        category: 'owner',
+        filename: __filename
+}, async (conn, message, args) => {
+try {
+   if (!message.isCreator) return message.reply("_Command is for bot owner only")
+   let user = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
+   if (!user) return message.reply("_*Reply/Tag or provide a number*_")
+   user = user.split("@")[0]
+   let sudos = getSudo()
+   if (sudos.includes(user)) return message.reply("*_User is already In the SUDO db.*_")
+   setSudo(user)
+   await message.reply(`${user} Has Been given Sudo Access`)
+} catch (err) {
+	message.reply(err.toString())
+  }
+})
+
+
+Index({
+        pattern: 'delsudo',
+        desc: 'del sudo',
+        category: 'owner',
+        filename: __filename
+}, async (conn, message, args) => {
+try {
+   if (!message.isCreator) return message.reply("_Command is for bot owner only")
+   let user = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
+   if (!user) return message.reply("_*Reply/Tag or provide a number*_")
+   user = user.split("@")[0]
+   let sudos = getSudo()
+   if (!sudos.includes(user)) return message.reply("*_User is not In the SUDO db.*_")
+   delSudo(user)
+   await message.reply(`${user} Has Been given Sudo Access`)
+} catch (err) {
+        message.reply(err.toString())
+  }
+})
+
+
+Index({
+        pattern: 'getsudo',
+        desc: 'get sudo',
+        category: 'owner',
+        filename: __filename
+}, async (conn, message, args) => {
+try {
+   if (!message.isCreator) return message.reply("_Command is for bot owner only")
+   let sudos = getsudo()
+   await message.reply(`Sudo numbers are \n${user}`)
+} catch (err) {                                           
+	message.reply(err.toString())
+  }
+});
 
 
 /*Index({

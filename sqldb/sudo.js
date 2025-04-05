@@ -9,21 +9,21 @@ const SudoDB = config.DB.define('sudo', {
   }
 });
 
-async function setsudo(number) {
+async function setSudo(number) {
   return await SudoDB.create({ number });
 }
 
-async function delsudo(number) {
+async function delSudo(number) {
   return await SudoDB.destroy({ where: { number } });
 }
 
-async function getsudo() {
+async function getSudo() {
   return await SudoDB.findAll();
 }
 
 module.exports = {
   SudoDB,
-  setsudo,
-  delsudo,
-  getsudo
+  setSudo,
+  delSudo,
+  getSudo
 }
