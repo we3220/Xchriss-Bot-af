@@ -55,6 +55,7 @@ Index({
      if (!message.args) return await message.reply("*𝐏lease providea YouTube url or Song Name.*");
      const ytsearch = require("yt-search")
 	const yt = await ytsearch(message.args);
+	console.log(yt)
     if (yt.results.length < 1) return message.reply("No results found!");
     let yts = yt.results[0];
     let apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp3?url=${encodeURIComponent(yts.url)}`;
