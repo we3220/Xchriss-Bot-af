@@ -2,7 +2,7 @@ const { cmd, mode } = require("../lib")
 const fs = require("fs")
 const path = require("path")
 //let sudo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/sudo.json')))
-const { addSudo, getAllSudos, deleteSudo, } = require("../sqldb/sudo")
+const { addSudo, getAllSudos, deleteSudo } = require("../sqldb/sudo")
 const Index = cmd
 
 
@@ -19,7 +19,7 @@ try {
    user = user.split("@")[0]
    /*let sudos = await getSudo()
    if (sudos.includes(user)) return message.reply("*_User is already In the SUDO db.*_")*/
-   addSudo(user)
+   await addSudo(user)
    await message.reply(`${user} Has Been given Sudo Access`)
 } catch (err) {
 	message.reply(err.toString())
@@ -42,7 +42,7 @@ try {
    if (isDel) {
 	   return message.reply(`${user} Has been removed from SUDO db.`)
    } else {
-   	       return message.reply(`${user} is not SUDO`)
+   	   return message.reply(`${user} is not SUDO`)
    }
 } catch (err) {
         message.reply(err.toString())
