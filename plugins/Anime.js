@@ -1,6 +1,7 @@
 const { cmd, GIFBufferToVideoBuffer, getBuffer, fetchJson } = require("../lib")
 const axios = require("axios")
 const Index = cmd
+const config = require("../config")
 Index({
 	pattern: 'kiss',
 	desc: 'reaction',
@@ -12,9 +13,9 @@ Index({
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(reaction, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} kissed ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} kissed @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
-       await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} kissed Everyone*`, mentions: [`${message.sender}`]})
+       await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender.split("@")[0]} kissed Everyone*`, mentions: [`${message.sender}`]})
     }
 });
 
@@ -30,7 +31,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} bite ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} bite @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} bite Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -48,7 +49,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} blushed at ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} blushed at @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} blushed at Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -66,7 +67,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} bonked ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} bonked @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} bonked Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -84,7 +85,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} cringed ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} cringed @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} cringed Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -102,7 +103,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} bullied ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} bullied @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} bullied Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -120,7 +121,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} cried to ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} cried to @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} cried to Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -138,7 +139,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} cuddled ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} cuddled @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} cuddled Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -156,7 +157,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} hugged ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} hugged @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} hugged Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -174,7 +175,7 @@ let target = message.quoted ? message.quoted.sender : null
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
     if (target) {
-    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${conn.getName(message.sender)} patted ${conn.getName(target)}*`, mentions: [`${message.sender}`, `${target}`]})
+    await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*@${message.sender.split("@")[0]} patted @${target.split("@")[0]}*`, mentions: [`${message.sender}`, `${target}`]})
   } else {
        await conn.sendMessage(message.jid, { video: result, gifPlayback: true, caption: `*${message.sender} patted Everyone*`, mentions: [`${message.sender}`]})
     }
@@ -188,7 +189,7 @@ Index({
 	filename: __filename
 }, async (conn, message, args) => {
     const result = await axios.get(`https://api.waifu.pics/sfw/waifu`);
-    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: "- ✞Xᴄʜʀɪss Bot✞" }, { quoted: message.card })
+    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: config.BOT_NAME }, { quoted: message.card })
 });
 
 
@@ -199,7 +200,7 @@ Index({
 	filename: __filename
 }, async (conn, message, args) => {
     const result = await axios.get(`https://api.waifu.pics/sfw/shinobu`);
-    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: "- ✞Xᴄʜʀɪss Bot✞" }, { quoted: message.card })
+    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: config.BOT_NAME }, { quoted: message.card })
 });
 
 
@@ -210,7 +211,7 @@ Index({
 	filename: __filename
 }, async (conn, message, args) => {
     const result = await axios.get(`https://api.waifu.pics/sfw/neko`);
-    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: "- ✞Xᴄʜʀɪss Bot✞" }, { quoted: message.card })
+    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: config.BOT_NAME }, { quoted: message.card })
 });
 
 
@@ -221,5 +222,5 @@ Index({
 	filename: __filename
 }, async (conn, message, args) => {
     const result = await axios.get(`https://api.waifu.pics/sfw/megumin`);
-    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: "- ✞Xᴄʜʀɪss Bot✞" }, { quoted: message.card })
+    await conn.sendMessage(message.jid, { image: { url: result.data.url }, caption: config.BOT_NAME }, { quoted: message.card })
 });
