@@ -208,9 +208,9 @@ Index({
     desc:"wame",
     category: "group",
 	filename: __filename
-    }, async (message, match) => {
+    }, async (conn, message, args) => {
 try {
-    let users = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : match.replace(/[^0-9]/g, '') 
+    let users = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
     if (!users) return message.reply("_Reply/tag a user")
     await message.reply(`https://wa.me/${users.split("@")[0]}`)
 } catch (error) {
@@ -271,7 +271,7 @@ try {
     const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
 	 if (!isBotAdmins) return await message.reply("I'm not an admin")
      if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
-   let users = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : match.replace(/[^0-9]/g, '')
+   let users = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
 	if (!users) return message.reply("reply/tag a user to promote")        
 	await conn.groupParticipantsUpdate(message.jid, [users], 'promote')
 	await message.reply(`User promoted successfully`) 
@@ -294,7 +294,7 @@ try {
     const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
 	 if (!isBotAdmins) return await message.reply("I'm not an admin")
      if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
-    let users = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : match.replace(/[^0-9]/g, '')
+    let users = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
 	if (!users) return message.reply("reply/tag a user to demote")        
 	await conn.groupParticipantsUpdate(message.jid, [users], 'demote')
 	await message.reply(`User demoted successfully`) 
@@ -317,7 +317,7 @@ try {
     const isAdmins = message.isGroup ? groupAdmins.includes(message.sender) : false;
 	 if (!isBotAdmins) return await message.reply("I'm not an admin")
      if (!isAdmins) return message.reply("You need to be an admin to use this command ⁉️")
-    let users = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : match.replace(/[^0-9]/g, '')
+    let users = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
 	if (!users) return message.reply("reply/tag a user to kick ")
 	await conn.groupParticipantsUpdate(message.jid, [users], 'remove')
 	await message.reply(`User Kicked successfully`)
