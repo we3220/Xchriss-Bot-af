@@ -110,8 +110,8 @@ Index({
 }, async (conn, message, args) => {
   if (!message.isCreator) return message.reply("_Command is for bot owner only")
   let txt = `*------「 Bot Sudo 」------*\n\n`
-  txt += sudo
-  await message.reply(txt)
+  const nums = require(sudo);
+  await message.reply(sudo.map(num => `${txt}User: ${num}`).join("\n"));
 })
 
 
