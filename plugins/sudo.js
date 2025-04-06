@@ -109,7 +109,7 @@ Index({
     filename: __filename
 }, async (conn, message, args) => {
   if (!message.isCreator) return message.reply("_Command is for bot owner only")
-  let txt = `*------「 Bot Sudo 」------*\n\n`
+  let txt = `*「 SUDO 」*`
   const nums = sudo
   await message.reply(nums.map(num => `${txt}User: ${num}`).join("\n"));
 })
