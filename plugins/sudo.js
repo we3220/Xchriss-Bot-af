@@ -111,7 +111,7 @@ Index({
   if (!message.isCreator) return message.reply("_Command is for bot owner only")
   let txt = `*「 SUDO 」*`
   const nums = sudo
-  await message.reply(nums.map(num => `${txt}User: ${num}`).join("\n"));
+  await message.reply(nums.map(num => `${txt}${num}`).join("\n"));
 })
 
 
