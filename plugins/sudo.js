@@ -111,7 +111,7 @@ Index({
   if (!message.isCreator) return message.reply("_Command is for bot owner only")
   let txt = `*------「 Bot Sudo 」------*\n\n`
   txt += sudo
-  message.reply(txt)
+  await message.reply(txt)
 })
 
 
