@@ -80,7 +80,7 @@ Index({
    let user = first.split("@")[0]
    if (sudo.includes(user)) return message.reply("*_User is already In the Sudo list*_")
    sudo.push(user)
-   fs.readFileSync(path.resolve(__dirname, '../lib/sudo.json'), JSON.stringify(sudo))
+   fs.writeFileSync(path.resolve(__dirname, '../lib/sudo.json'), JSON.stringify(sudo))
    await message.reply(`${user} Has Been given Sudo Access`)
 });
 
