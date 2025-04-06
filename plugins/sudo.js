@@ -103,8 +103,8 @@ await message.reply(`${user} Has Been Deleted from Sudo users.`)
 });
 
 Index({
-    pattern: 'delsudo',
-    desc: 'delete sudo',
+    pattern: 'getsudo',
+    desc: 'get sudo',
     category: 'owner',
     filename: __filename
 }, async (conn, message, args) => {
