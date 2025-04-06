@@ -95,7 +95,7 @@ Index({
     let first = message.quoted ? message.quoted.sender : message.args.replace(/[^0-9]/g, '' + "@s.whatsapp.net")
    if (!first) return message.reply("_*Reply/Tag or provide a number*_")
    let user = first.split("@")[0]
-      if (sudo.includes(user)) return message.reply("*_User is not In the Sudo list*_")
+   if (!sudo.includes(user)) return message.reply("*_User is not In the Sudo list*_")
    let fin = sudo.indexOf(user)
    sudo.splice(fin, 1)
    fs.writeFileSync(path.resolve(__dirname, '../lib/sudo.json'), JSON.stringify(sudo))
