@@ -81,7 +81,7 @@ Index({
    if (sudo.includes(user)) return message.reply("*_User is already In the Sudo list*_")
    sudo.push(user)
    fs.writeFileSync(path.resolve(__dirname, '../lib/sudo.json'), JSON.stringify(sudo))
-   await message.reply(`${user} Has Been given Sudo Access`)
+   return await message.reply(`${user} Has Been given Sudo Access`)
 });
 
 
@@ -99,7 +99,7 @@ Index({
    let fin = sudo.indexOf(user)
    sudo.splice(fin, 1)
    fs.writeFileSync(path.resolve(__dirname, '../lib/sudo.json'), JSON.stringify(sudo))
-await message.reply(`${user} Has Been Deleted from Sudo users.`)
+	return await message.reply(`${user} Has Been Deleted from Sudo users.`)
 });
 
 Index({
@@ -111,7 +111,7 @@ Index({
   if (!message.isCreator) return message.reply("_Command is for bot owner only")
   let txt = `*「 SUDO 」*`
   const nums = sudo
-  await message.reply(nums.map(num => `${txt}${num}`).join("\n"));
+  return await message.reply(nums.map(num => `${txt}${num}`).join("\n"));
 })
 
 
