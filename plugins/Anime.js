@@ -7,7 +7,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-    let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+    let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/kiss`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(reaction, "utf-8"))
@@ -25,7 +25,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/bite`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -43,7 +43,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/blush`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -61,7 +61,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/bonk`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -79,7 +79,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/cringe`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -97,7 +97,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/bully`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -115,7 +115,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/cry`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -133,7 +133,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/cuddle`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -151,7 +151,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/hug`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
@@ -169,7 +169,7 @@ Index({
 	category: 'reaction',
 	filename: __filename
 }, async (conn, message, args) => {
-let target = message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted ? message.quoted.sender : null
+let target = message.quoted ? message.quoted.sender : null
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/pat`);
     let reaction = await getBuffer(url)
     let result = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"))
