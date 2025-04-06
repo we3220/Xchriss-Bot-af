@@ -67,6 +67,49 @@ try {
   }
 });
 */
+Index({
+	pattern: 'vv',
+	alias: "rvo",
+	desc: 'view once',
+	category: 'owner',
+	filename: __filename
+}, async (conn, message, args) => {
+    if (!message.quoted) {
+        return message.reply(`*reply to a view once message!*`);
+    }
+    let mime = (message.quoted.msg || message.quoted).mtype || '';
+    try {
+        if (/image/.test(mime)) {
+            let media = await message.quoted.download();
+            await conn.sendMessage(message.jid, {
+                image: media,
+                caption: "",
+            }, { quoted: message });
+
+        } else if (/video/.test(mime)) {
+            let media = await message.quoted.download();
+            await conn.sendMessage(message.jid, {
+                video: media,
+                caption: "",
+            }, { quoted: message });
+
+        } else if (/audio/.test(mime)) {
+            let media = await message.quoted.download();
+            await conn.sendMessage(message.jid, {
+                audio: media,
+                mimetype: 'audio/mpeg',
+                ptt: true // Set to true if you want to send as a voice note
+            }, { quoted: message });
+
+        } else {
+            message.reply(`You need to reply to a view once message.`);
+        }
+    } catch (err) {
+        console.error('Error processing media:', err);
+        message.reply(`Failed to retrieve view once media.`);
+    }
+})
+
 
 Index({
 	pattern: 'setsudo',
