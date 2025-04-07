@@ -1,11 +1,10 @@
-const { cmd, sleep, getAdmin, getBuffer } 
-= require('../lib'); const { HANDLERS } = 
-require("../config") const config = 
-require("../config") const fs = 
-require("fs") const path = require("path") 
-const rept = 
-JSON.parse(fs.readFileSync(path.resolve(__dirname, 
-'./media/ban.json'))) const Index = cmd
+const { cmd, sleep, getAdmin, getBuffer } = require('../lib'); 
+const { HANDLERS } = require("../config")
+const config = require("../config")
+const fs = require("fs")
+const path = require("path")
+const rept = JSON.parse(fs.readFileSync(path.resolve(__dirname,'./media/ban.json')))
+const Index = cmd
 
 
 Index({
@@ -67,7 +66,7 @@ try {
 		mssg =  `
 	    *[ ${u.id} ]*
 	    *ᴍᴇᴍʙᴇʀs:* ${u.participants.length}
-	    *ᴄʀᴇᴀᴛᴏʀ:* ${u?.subjectOwner ? u?.subjectOwner.split("@")[0] : "Already out"}\n`
+	    *ᴄʀᴇᴀᴛᴏʀ:* ${u?.subjectOwner ? u?.subjectOwner.split("@")[0] : "Already out"}
 	    *sᴛᴀᴛᴜs:* ${u.announce == false ? "Open": "closed"}
     `
     }
