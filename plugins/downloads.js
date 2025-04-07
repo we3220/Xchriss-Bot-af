@@ -1,10 +1,14 @@
-const { cmd, isUrl, fetchJson } = require("../lib")
+const { webp2mp4File, remini, cmd, isUrl, fetchJson } = require("../lib")
 const fs = require("fs")
 const axios = require("axios")
 const { Sticker, createSticker, StickerTypes } = require("wa-sticker-formatter");
 const { githubstalk } = require("../lib/ghstalk")
 const Index = cmd
 const { BOT_NAME } = require("../config")
+const getRandom = (ext) => {
+    return `${Math.floor(Math.random() * 10000)}${ext}`
+}
+
 
 Index({
      pattern: "tiktok",
@@ -106,6 +110,115 @@ Index({
             return message.reply(`Error fetching definition for *${text}*`);
         }
 });
+
+Index({
+  pattern: 'togif',
+  desc: 'sticker to video',
+  category: 'converter',
+  filename: __filename
+}, async (conn, message, args) => {
+  try {
+  if (!message.quoted) return message.reply(`*Reply to a sticker`)
+  let mime = message.quoted.mtype
+  if (!/webp/.test(mime)) return message.reply(`*Reply to a sticker`)
+  let media = await conn.downloadAndSaveMediaMessage(message.quoted)
+  let webpToMp4 = await webp2mp4File(media)
+                await conn.sendMessage(message.jid, {
+                    video: {
+                        url: webpToMp4.result,
+                        caption: '*- Converted Video'
+                    },
+                    gifPlayback: true
+                }, {
+                    quoted: m
+                })
+                await fs.unlinkSync(media)
+    } catch (error) {
+    console.error('Error processing the command:', error)
+    message.reply('An error occurred while processing. Please try again.');
+  }
+});
+
+
+Index({
+  pattern: 'tomp4',
+  desc: 'sticker to video',
+  category: 'converter',
+  filename: __filename
+}, async (conn, message, args) => {
+  try {
+  if (!message.quoted) return message.reply(`*Reply to a sticker`)
+  let mime = message.quoted.mtype
+  if (!/webp/.test(mime)) return message.reply(`*Reply to a sticker`)
+  let media = await conn.downloadAndSaveMediaMessage(message.quoted)
+  let webpToMp4 = await webp2mp4File(media)
+                await conn.sendMessage(message.jid, {
+                    video: {
+                        url: webpToMp4.result,
+                        caption: '*- Converted Video'
+                    }
+                }, {
+                    quoted: m
+                })
+                await fs.unlinkSync(media)
+    } catch (error) {
+    console.error('Error processing the command:', error)
+    message.reply('An error occurred while processing. Please try again.');
+  }
+});
+
+
+Index({
+  pattern: 'toimg',
+  desc: 'sticker to image',
+  category: 'converter',
+  filename: __filename
+}, async (conn, message, args) => {
+  try {
+  if (!message.quoted) return message.reply(`*Reply to a sticker`)
+  let mime = message.quoted.mtype
+  if (!/webp/.test(mime)) return message.reply(`*Reply to a sticker`)
+  let media = await conn.downloadAndSaveMediaMessage(message.quoted)
+  let ran = await getRandom('.png')
+  exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+                    fs.unlinkSync(media)
+                    if (err) return err
+                    let buffer = fs.readFileSync(ran)
+                    conn.sendMessage(message.jid, {
+                        image: buffer
+                    }, {
+                        quoted: m
+                    })
+                    fs.unlinkSync(ran)
+                })
+    } catch (error) {
+    console.error('Error processing the command:', error)
+    message.reply('An error occurred while processing. Please try again.');
+  }
+});
+
+
+Index({
+  pattern: 'remini',
+  alias: ["hd", "enhance"],
+  desc: 'enhance image',
+  category: 'downloads',
+  filename: __filename
+}, async (conn, message, args) => {
+  try {
+  if (!message.quoted) return message.reply(`*Reply to an image`)
+  let mime = message.quoted.mtype
+  if (!/image/.test(mime)) return message.reply(`*Reply to an image`)
+  let photo = await conn.downloadAndSaveMediaMessage(message.quoted)
+  let result = await remini(await fs.readFileSync(photo), "enhance")
+  await conn.sendMessage(message.jid, {image: result}, { quoted: message })
+  await fs.unlinkSync(photo)
+    } catch (error) {
+    console.error('Error processing the command:', error)
+    message.reply('An error occurred while processing. Please try again.');
+  }
+});
+
 
 Index({
   pattern: 'sticker',

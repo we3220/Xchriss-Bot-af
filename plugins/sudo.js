@@ -67,6 +67,89 @@ try {
   }
 });
 */
+
+Index({
+	pattern: 'intro',
+	desc: 'intro',
+	category: 'owner',
+	filename: __filename
+}, async (conn, message, args) => {
+const conf = require("../config")
+const xchriss = fs.readFileSync(path.resolve(__dirname, './media/logo.jpg'));
+const makinol = fs.readFileSync(path.resolve(__dirname, './media/taira2.jpg'));
+mssg =  `
+    *[ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ${conf.BOT_NAME} ]*
+    *ᴜsᴇʀ:* ${message.pushName}
+    *ᴄʀᴇᴀᴛᴏʀ:* *𝚃𝙰𝙸𝚁𝙰 𝙼𝙰𝙺𝙸𝙽𝙾*
+    *ʟᴏᴄᴀᴛɪᴏɴ:* *ᴇᴀʀᴛʜ*
+    *ᴛᴇʟᴇɢʀᴀᴍ:* *https://t.me/Tha_Healer*
+    *sᴛᴀᴛᴜs:* *Busy*
+    `
+    let buttonMessage = {
+        image: xchriss,
+        caption: mssg,
+        headerType: 4,
+        contextInfo: {
+        mentionedJid:[message.sender],
+        externalAdReply: {
+             title: conf.BOT_NAME,
+             body: "ʙᴏᴛ ɪɴᴛʀᴏ 🙂‍↔️", 
+             thumbnail: makinol,
+             mediaType: 4,
+             mediaUrl: `https://t.me/Tha_Healer`,
+             sourceUrl: `https://t.me/Tha_Healer`,
+            },
+        },
+    }
+       await conn.sendMessage(message.jid, buttonMessage);
+})
+
+
+Index({
+        pattern: 'vv2',
+        alias: "rvo2",
+        desc: 'view once',
+        category: 'owner',
+        filename: __filename
+}, async (conn, message, args) => {
+    if (!message.isCreator) return message.reply("_Command is for bot owner only")
+    if (!message.quoted) {
+        return message.reply(`*reply to a view once message!*`);
+    }
+    let mime = (message.quoted.msg || message.quoted).mtype || '';
+    try {
+        if (/image/.test(mime)) {
+            let media = await message.quoted.download();
+            await conn.sendMessage(message.botNumber, {
+                image: media,
+                caption: "",
+            }, { quoted: message });
+
+        } else if (/video/.test(mime)) {
+            let media = await message.quoted.download();
+            await conn.sendMessage(message.botNumber, {
+                video: media,
+                caption: "",
+            }, { quoted: message });
+
+        } else if (/audio/.test(mime)) {
+            let media = await message.quoted.download();
+            await conn.sendMessage(message.botNumber, {
+                audio: media,
+                mimetype: 'audio/mpeg',
+                ptt: true // Set to true if you want to send as a voice note
+            }, { quoted: message });
+
+        } else {
+            message.reply(`You need to reply to a view once message.`);
+        }
+    } catch (err) {
+        console.error('Error processing media:', err);
+        message.reply(`Failed to retrieve view once media.`);
+    }
+})
+
+
 Index({
 	pattern: 'vv',
 	alias: "rvo",
@@ -74,6 +157,7 @@ Index({
 	category: 'owner',
 	filename: __filename
 }, async (conn, message, args) => {
+	if (!message.isCreator) return message.reply("_Command is for bot owner only")
     if (!message.quoted) {
         return message.reply(`*reply to a view once message!*`);
     }
@@ -122,7 +206,7 @@ Index({
    if (!first) return message.reply("_*Reply/Tag or provide a number*_")
    let user = first.split("@")[0]
    if (sudo.includes(user)) return message.reply("*_User is already In the Sudo list*_")
-   sudo.push(user)
+   sudo.push(user)7
    fs.writeFileSync(path.resolve(__dirname, '../lib/sudo.json'), JSON.stringify(sudo))
    return await message.reply(`${user} Has Been given Sudo Access`)
 });

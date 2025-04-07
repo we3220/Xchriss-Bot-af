@@ -1,10 +1,82 @@
-const { cmd, sleep, getAdmin } = require('../lib');
-const { HANDLERS } = require("../config")
-const config = require("../config")
-const fs = require("fs")
-const path = require("path")
-const rept = JSON.parse(fs.readFileSync(path.resolve(__dirname, './media/ban.json')))
-const Index = cmd
+const { cmd, sleep, getAdmin, getBuffer } 
+= require('../lib'); const { HANDLERS } = 
+require("../config") const config = 
+require("../config") const fs = 
+require("fs") const path = require("path") 
+const rept = 
+JSON.parse(fs.readFileSync(path.resolve(__dirname, 
+'./media/ban.json'))) const Index = cmd
+
+
+Index({
+    pattern: 'getppgc',
+    desc: 'group pp',
+    category: 'group',
+    filename: __filename
+}, async (conn, message, args) => {
+try {
+   if (!message.isGroup) return message.reply("This command is for groups only")
+   if (!message.isCreator) return message.reply("*_This command is for owner only_*")
+   var ppimg = await conn.profilePictureUrl(message.jid, 'image')
+   await conn.sendMessage(message.jid, { image: { url: ppimg }}, { quoted: m })
+} catch (error) {
+    message.reply(error.toString())
+}
+})
+
+Index({
+    pattern: 'groupinfo',
+    alias: "infogroup",
+    desc: 'group info',
+    category: 'group',
+    filename: __filename
+}, async (conn, message, args) => {
+try {
+   if (!message.isGroup) return message.reply("This command is for groups only")
+   if (!message.isCreator) return message.reply("*_This command is for owner only_*")
+  let _meta = await conn.groupMetadata(message.jid)
+  console.log(_meta)
+let _img = await conn.profilePictureUrl(_meta.id, 'image') 
+  let caption = `
+*[ ${_meta.subject} ]*
+*ᴄʀᴇᴀᴛᴇᴅ:* *${moment(_meta.creation * 1000).format('ll')}*
+*ᴍᴇᴍʙᴇʀs:* *${_meta.participants.length}*
+*ᴀᴅᴍɪɴs:* *${_meta.participants.filter(x => x.admin === 'admin').length}*
+*ᴊᴜsᴛ ᴍᴇᴍʙᴇʀs:* *${_meta.participants.filter(x => x.admin === null).length}*
+*ɢʀᴏᴜᴘ ᴊɪᴅ:* : *${_meta.id}*
+`
+await conn.sendMessage(message.jid, { caption, image: await getBuffer(_img)}, { quoted: m })
+} catch (error) {
+    message.reply(error.toString())
+}
+});
+
+
+Index({
+    pattern: 'listgc',
+    alias: "listgroup",
+    desc: 'list groups',
+    category: 'owner',
+    filename: __filename
+}, async (conn, message, args) => {
+try {
+    if (!message.isCreator) return message.reply("_Command is for bot owner only")
+    let a = await conn.groupFetchAllParticipating()
+	let gc = Object.values(a)
+	for (const u of gc) {
+		mssg =  `
+	    *[ ${u.id} ]*
+	    *ᴍᴇᴍʙᴇʀs:* ${u.participants.length}
+	    *ᴄʀᴇᴀᴛᴏʀ:* ${u?.subjectOwner ? u?.subjectOwner.split("@")[0] : "Already out"}\n`
+	    *sᴛᴀᴛᴜs:* ${u.announce == false ? "Open": "closed"}
+    `
+    }
+    await message.reply(mssg)
+} catch (error) {
+    message.reply(error.toString())
+}
+});
+
 
 Index({
 	pattern: 'addban',
@@ -174,7 +246,7 @@ await message.reply("_Group Successfully Joined or wait for admin approval_")
 
 
 Index({
-	pattern: 'gdesc',
+	pattern: 'setdesc',
 	desc: 'set gc desc',
 	category: 'group',
 	filename: __filename
@@ -189,7 +261,7 @@ Index({
 });
 
 Index({
-	pattern: 'gname',
+	pattern: 'setsubject',
 	desc: 'Change group name',
 	category: 'group',
 	filename: __filename
