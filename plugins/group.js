@@ -5,7 +5,7 @@ const fs = require("fs")
 const path = require("path")
 const rept = JSON.parse(fs.readFileSync(path.resolve(__dirname,'./media/ban.json')))
 const Index = cmd
-
+const moment = require("moment")
 
 Index({
     pattern: 'getppgc',
