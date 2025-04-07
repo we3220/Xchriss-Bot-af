@@ -44,7 +44,7 @@ let _img = await conn.profilePictureUrl(_meta.id, 'image')
 *ᴊᴜsᴛ ᴍᴇᴍʙᴇʀs:* *${_meta.participants.filter(x => x.admin === null).length}*
 *ɢʀᴏᴜᴘ ᴊɪᴅ:* : *${_meta.id}*
 `
-await conn.sendMessage(message.jid, { caption, image: await getBuffer(_img)}, { quoted: m })
+await conn.sendMessage(message.jid, { caption, image: await getBuffer(_img)}, { quoted: message })
 } catch (error) {
     message.reply(error.toString())
 }
