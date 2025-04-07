@@ -63,10 +63,11 @@ try {
 	let gc = Object.values(a)
 	for (const u of gc) {
 		mssg =  `
-	    *[ ${u.id} ]*
+	    *[ ${u.subject} ]*
 	    *ᴍᴇᴍʙᴇʀs:* ${u.participants.length}
 	    *ᴄʀᴇᴀᴛᴏʀ:* ${u?.subjectOwner ? u?.subjectOwner.split("@")[0] : "Already out"}
 	    *sᴛᴀᴛᴜs:* ${u.announce == false ? "Open": "closed"}
+	    *JID:* *${u.id}*
     `
     }
     await message.reply(mssg)
