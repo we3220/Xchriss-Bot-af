@@ -277,7 +277,7 @@ Index({
 },async (conn, message, args) => {
 try {
 const data = await nsfw.fetch("fuck")
-        conn.sendMessage.sendMessage(message.jid, { image: { url: data.image.url }, caption: "🥹🥵",  }, { quoted: message.card })
+        conn.sendMessage(message.jid, { image: { url: data.image.url }, caption: "🥹🥵",  }, { quoted: message.card })
 } catch (error) {
     message.reply(error.toString())
 }
