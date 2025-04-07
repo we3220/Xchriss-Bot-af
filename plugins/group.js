@@ -34,7 +34,6 @@ try {
    if (!message.isGroup) return message.reply("This command is for groups only")
    if (!message.isCreator) return message.reply("*_This command is for owner only_*")
   let _meta = await conn.groupMetadata(message.jid)
-  console.log(_meta)
 let _img = await conn.profilePictureUrl(_meta.id, 'image') 
   let caption = `
 *[ ${_meta.subject} ]*
