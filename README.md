@@ -10,12 +10,6 @@
 <p align="center">
 <a href="https://github.com/anonphoenix007"><img title="Author" src="https://img.shields.io/badge/Xchriss-Bot-black?style=for-the-badge&logo=twitter"></a>
 <p/>
-<p align="center">
-<a href="https://github.com/anonphoenix007?tab=followers"><img title="Followers" src="https://img.shields.io/github/followers/anonphoenix007?label=Followers&style=social"></a>
-<a href="https://github.com/anonphoenix007/Xchriss-Bot/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/anonphoenix007/Xchriss-Bot?&style=social"></a>
-<a href="https://github.com/anonphoenix007/Xchriss-Bot/network/members"><img title="Fork" src="https://img.shields.io/github/forks/anonphoenix007/Xchriss-Bot?style=social"></a>
-<a href="https://github.com/anonphoenix007/Xchriss-Bot/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/anonphoenix007/Xchriss-Bot?label=Watching&style=social"></a>
-</p>
 
 #### Notice
 If you create a clone of my bot then Don't forget to give ***Credit*** 
