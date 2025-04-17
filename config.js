@@ -1,11 +1,13 @@
 const { Sequelize } = require('sequelize');
 const toBool = (x) => x == 'true'
-const DATABASE_URL = process.env.DATABASE_URL === undefined ? "./database.db" : process.env.DATABASE_URL;
+const DB_URL =  process.env.DATABASE_URL || '';
+
 module.exports = {
   ANTICALL_END: toBool(process.env.ANTICALL_END) || true,
   ANTICALL_BLOCK: toBool(process.env.ANTICALL_BLOCK) || true,
   ANTIDELETE: toBool(process.env.ANTIDELETE) || true,
   ANTILINK: toBool(process.env.ANTILINK) || true,
+  BASE_URL : "https://pair-creds-6hra.onrender.com",
   BOT_NAME: process.env.BOT_NAME || "𒊹𝐗𝐂𝐇𝐑𝐈𝐒𝐒 𝐁𝐎𝐓𒊹",
   ERROR_MSG: toBool(process.env.ERROR_MSG) || true,
   GREETINGS: toBool(process.env.GREETINGS) || true,
@@ -20,5 +22,5 @@ module.exports = {
   READ_STATUS: toBool(process.env.READ_STATUS) || true,
   SESSION_ID: process.env.SESSION_ID || " ",
   SUDO: process.env.SUDO || "2349072958046,2349031616504,2348083569647",
-  DB: DATABASE_URL === "./database.db" ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: false }) : new Sequelize(DATABASE_URL, {dialect: "postgres", ssl: true, protocol: "postgres", dialectOptions: { native: true, ssl: { require: true, rejectUnauthorized: false },}, logging: false })
+  DATABASE: DB_URL ? new Sequelize(DB_URL,{dialect:'postgres',ssl:true,protocol: 'postgres', dialectOptions: {native: true,ssl:{require: true,rejectUnauthorized: false}}, logging: false}) : new Sequelize({dialect:'sqlite',storage:'./database.db',logging:false}) 
 }

@@ -55,7 +55,7 @@
     "PRESENCE": {
       "description": "Always online, 1 - composing, 2 - recording, 3 - available, 4 - unavailable",
       "required": true,
-      "value": "true"
+      "value": "1"
     },
 
     "ANTIDELETE": {

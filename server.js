@@ -18,7 +18,7 @@ function start() {
       })
       .on('message', data => {
          if (data == 'reset') {
-            console.log('Restarting MAKINO-MD-V3...')
+            console.log('Restarting Xchriss Bot...')
             p.kill()
             start()
             delete p
